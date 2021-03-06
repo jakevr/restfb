@@ -30,41 +30,14 @@ import com.restfb.AbstractJsonMapperTests;
 class AccountTest extends AbstractJsonMapperTests {
 
   @Test
-  void checkV1_0() {
-    Account exampleAccount = createJsonMapper().toJavaObject(jsonFromClasspath("v1_0/account"), Account.class);
-    assertEquals("testtoken", exampleAccount.getAccessToken());
-    assertEquals("123456789", exampleAccount.getId());
-    assertEquals(6, exampleAccount.getPerms().size());
-    assertTrue(exampleAccount.getPerms().contains("BASIC_ADMIN"));
-  }
-
-  @Test
-  void checkV2_0() {
-    Account exampleAccount = createJsonMapper().toJavaObject(jsonFromClasspath("v2_0/account"), Account.class);
-    assertEquals("testtoken", exampleAccount.getAccessToken());
-    assertEquals("123456789", exampleAccount.getId());
-    assertEquals(6, exampleAccount.getPerms().size());
-    assertTrue(exampleAccount.getPerms().contains("BASIC_ADMIN"));
-  }
-
-  @Test
-  void checkV2_1() {
-    Account exampleAccount = createJsonMapper().toJavaObject(jsonFromClasspath("v2_1/account"), Account.class);
-    assertEquals("testtoken", exampleAccount.getAccessToken());
-    assertEquals("123456789", exampleAccount.getId());
-    assertEquals(6, exampleAccount.getPerms().size());
-    assertTrue(exampleAccount.getPerms().contains("BASIC_ADMIN"));
-  }
-
-  @Test
-  void checkV2_6() {
-    Account exampleAccount = createJsonMapper().toJavaObject(jsonFromClasspath("v2_6/account"), Account.class);
+  void checkV10_0() {
+    Account exampleAccount = createJsonMapper().toJavaObject(jsonFromClasspath("v10_0/account"), Account.class);
     assertEquals("123123123123", exampleAccount.getId());
     assertNotNull(exampleAccount.getOwnerBusiness());
     assertEquals("123123123123", exampleAccount.getOwnerBusiness().getId());
     assertEquals("Test Company", exampleAccount.getOwnerBusiness().getName());
-    assertEquals(6, exampleAccount.getPerms().size());
-    assertTrue(exampleAccount.getPerms().contains("BASIC_ADMIN"));
+    assertEquals(6, exampleAccount.getTasks().size());
+    assertTrue(exampleAccount.getTasks().contains("MESSAGING"));
   }
 
 }
