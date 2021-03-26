@@ -804,14 +804,7 @@ public class DefaultFacebookClient extends BaseFacebookClient implements Faceboo
       throw new FacebookNetworkException(t);
     }
 
-    // If we get any HTTP response code other than a 200 OK or 400 Bad Request
-    // or 401 Not Authorized or 403 Forbidden or 404 Not Found or 500 Internal
-    // Server Error or 302 Not Modified
-    // throw an exception.
-    if (HTTP_OK != response.getStatusCode() && HTTP_BAD_REQUEST != response.getStatusCode()
-        && HTTP_UNAUTHORIZED != response.getStatusCode() && HTTP_NOT_FOUND != response.getStatusCode()
-        && HTTP_INTERNAL_ERROR != response.getStatusCode() && HTTP_FORBIDDEN != response.getStatusCode()
-        && HTTP_NOT_MODIFIED != response.getStatusCode()) {
+    if (!response.isValidStatusCode()) {
       throw new FacebookNetworkException(response.getStatusCode());
     }
 

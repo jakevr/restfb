@@ -24,6 +24,7 @@ package com.restfb;
 import static com.restfb.util.StringUtils.isBlank;
 import static com.restfb.util.StringUtils.trimToEmpty;
 import static java.lang.String.format;
+import static java.net.HttpURLConnection.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -94,6 +95,38 @@ public interface WebRequestor {
         return format("HTTP status code %d and an empty response body.", getStatusCode());
       }
       return format("HTTP status code %d and response body: %s", getStatusCode(), getBody());
+    }
+
+    /**
+     * checks if we can handle the http status code.
+     *
+     * valid status codes are
+     *
+     * <ul>
+     * <li>OK (200)</li>
+     * <li>BAD_REQUEST (400)</li>
+     * <li>UNAUTHORIZED (401)</li>
+     * <li>NOT_FOUND (404)</li>
+     * <li>INTERNAL_ERROR (500)</li>
+     * <li>FORBIDDEN (403)</li>
+     * <li>NOT_MODIFIED (304)</li>
+     * </ul>
+     *
+     * @return true if we can handle the status code, false otherwise
+     */
+    public boolean isValidStatusCode() {
+      switch (getStatusCode()) {
+      case HTTP_OK:
+      case HTTP_BAD_REQUEST:
+      case HTTP_UNAUTHORIZED:
+      case HTTP_NOT_FOUND:
+      case HTTP_INTERNAL_ERROR:
+      case HTTP_FORBIDDEN:
+      case HTTP_NOT_MODIFIED:
+        return true;
+      default:
+        return false;
+      }
     }
   }
 
