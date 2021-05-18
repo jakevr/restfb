@@ -1211,7 +1211,22 @@ public class Post extends FacebookType implements HasComments, HasCreatedTime, H
     @Facebook
     private Long count = 0L;
 
+    @Facebook
+    private List<Post> data = new ArrayList<Post>();
+
     private static final long serialVersionUID = 1L;
+
+    public List<Post> getData() {
+      return unmodifiableList(data);
+    }
+
+    public boolean addData(Post post) {
+      return data.add(post);
+    }
+
+    public boolean removeData(Post post) {
+      return data.remove(post);
+    }
 
   }
 
