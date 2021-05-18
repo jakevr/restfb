@@ -26,7 +26,7 @@
 
     <!-- additional configuration -->
     <year.current>2021</year.current>
-    <skipTests>false</skipTests>
+    <skipTests>true</skipTests>
 
     <!-- sonar configuration -->
     <sonar.projectKey>restfb_restfb</sonar.projectKey>
